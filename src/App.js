@@ -6,15 +6,11 @@ import './App.css';
 function App() {
   const [movies, setMovies] = useState([]);
 
-  function fetchMoviesHandler() {
-    fetch('https://swapi.dev/api/films/')
-    .then(response => {
-      // Turning json response into a usable JS object using res.json()
-      return response.json();
-    }).then(data => {
-      setMovies(data.results);
-    })
-  }
+  async function fetchMoviesHandler() {
+    const response = await fetch('https://swapi.dev/api/films/');
+    const data = await response.json();
+    setMovies(data.results);
+  };
 
   return (
     <React.Fragment>
